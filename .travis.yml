@@ -1,11 +1,4 @@
 language: java
 jdk:
-  -oraclejdk8
-
-addons:
-  sonarcloud:
-    organization: dctisdal
-    token: eef95581f33f9cddd3303c19aabdbe14f62b2631
-script: 
--ant build
--sonar-scanner
+- oraclejdk8
+script: ant build
