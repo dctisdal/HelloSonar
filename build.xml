@@ -3,18 +3,18 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Example">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="HelloWorld">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="14"/>
     <property name="source" value="14"/>
-    <path id="Example.classpath">
+    <path id="HelloWorld.classpath">
         <pathelement location="bin"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
-            <fileset dir="trunk/src">
+            <fileset dir="src">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -28,8 +28,8 @@
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="trunk/src"/>
-            <classpath refid="Example.classpath"/>
+            <src path="src"/>
+            <classpath refid="HelloWorld.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
