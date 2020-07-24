@@ -3,22 +3,18 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="HelloWorld">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Example">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="14"/>
     <property name="source" value="14"/>
-    <path id="HelloWorld.classpath">
+    <path id="Example.classpath">
         <pathelement location="bin"/>
-    </path>
-    <path id="run.Hello.classpath">
-        <path refid="HelloWorld.classpath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src">
-                <exclude name="**/*.launch"/>
+            <fileset dir="trunk/src">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -32,8 +28,8 @@
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <classpath refid="HelloWorld.classpath"/>
+            <src path="trunk/src"/>
+            <classpath refid="Example.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -49,10 +45,5 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
-    </target>
-    <target name="Hello">
-        <java classname="Hello" failonerror="true" fork="yes">
-            <classpath refid="run.Hello.classpath"/>
-        </java>
     </target>
 </project>

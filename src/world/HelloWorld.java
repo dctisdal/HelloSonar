@@ -1,7 +1,7 @@
 package world;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.level;
 
 public class HelloWorld {
 	public static void main(String[] args) {
